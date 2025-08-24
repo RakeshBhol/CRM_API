@@ -4,7 +4,8 @@ from .models import CustomUser
 
 class CustomUserAdmin(BaseUserAdmin):
     ordering = ['email']
-    list_display = ['email', 'first_name', 'last_name', 'is_staff']
+    list_display = ['email', 'first_name', 'last_name', 'is_staff','date_joined']
+    readonly_fields = ('date_joined',)  # Add this line
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name')}),

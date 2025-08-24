@@ -4,6 +4,7 @@ from .views import (
     CustomUserRetrieveUpdateDestroyView,
     LoginView,
     LogoutView,
+    ForgotPasswordView,
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('users/<int:pk>/', CustomUserRetrieveUpdateDestroyView.as_view(), name='user-detail'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('forgot-password/', ForgotPasswordView.as_view(), name='forgot-password'),
 ]

@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework import generics
 from .models import CustomUser
 from .serializers import CustomUserSerializer
-from rest_framework.permissions import IsAuthenticated,AllowAny
+from rest_framework.permissions import BasePermission, IsAuthenticated,AllowAny
 
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
@@ -17,6 +17,9 @@ from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from .serializers import ForgotPasswordSerializer
 
+class IsAdminUserRole(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'admin'
 
 # User Views
 class CustomUserListCreateView(generics.ListCreateAPIView):
